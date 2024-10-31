@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "generate-sw": "node generate-sw.js",
+    "dev": "npm run generate-sw && next dev",
+    "build": "npm run generate-sw && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -14,10 +15,14 @@
     "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.17",
     "aos": "^3.0.0-beta.6",
+    "dotenv": "^16.4.5",
+    "firebase": "^11.0.1",
+    "firebase-admin": "^12.7.0",
     "next": "^14.0.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "simple-next": "file:",
     "typescript": "^5.3.3"
   },
   "devDependencies": {

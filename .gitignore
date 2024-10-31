@@ -37,3 +37,9 @@ next-env.d.ts
 
 # contentlayer
 .contentlayer
+
+.env
+.env.local
+
+# Google Service Account Credentials
+creds.json
