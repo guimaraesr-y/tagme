@@ -1,9 +1,9 @@
 import { AuthProvider } from "@/context/AuthContext";
 import "./css/style.css";
 
-import { Inter } from "next/font/google";
+import { Nunito } from "next/font/google";
 
-const inter = Inter({
+const inter = Nunito({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",

@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^2.0.4",
     "@types/node": "^20.10.4",
+    "@types/qrcode.react": "^1.0.5",
     "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.17",
     "aos": "^3.0.0-beta.6",
@@ -20,6 +21,7 @@
     "firebase-admin": "^12.7.0",
     "next": "^14.0.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
+    "qrcode.react": "^4.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "simple-next": "file:",
