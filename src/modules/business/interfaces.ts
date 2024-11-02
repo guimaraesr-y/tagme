@@ -1,6 +1,6 @@
-export interface ProfileInterface {
+export interface BusinessInterface {
+    id?: string;
     userUid: string;
-    fcmToken?: string;
     businessName?: string;
     businessDescription?: string;
     businessPicture?: string;
