@@ -1,6 +1,6 @@
-import { User } from "firebase/auth";
 import { Profile } from "./model";
 import { ProfileRepository } from "./repository";
+import { UserRecord } from "firebase-admin/auth";
 
 export class ProfileService {
 
@@ -10,12 +10,12 @@ export class ProfileService {
         this.repository = repository;
     }
 
-    public async getProfile(user: User): Promise<Profile | null> {
+    public async getProfile(user: UserRecord): Promise<Profile | null> {
         const profile = await this.repository.getProfileByUserUid(user.uid);
         return profile;
     }
 
-    public async setProfile(user: User, profile: Profile): Promise<void> {
+    public async setProfile(user: UserRecord, profile: Profile): Promise<void> {
         await this.repository.setProfileByUserUid(user.uid, profile);
     }
 

@@ -9,19 +9,15 @@ export class ProfileRepository {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             const data = docSnap.data();
-            return new Profile(data.userUid, data.fcmToken);
+            return Profile.fromObject(data);
         } else {
             return null;
         }
     }
 
-
     async setProfileByUserUid(userUid: string, profile: Profile): Promise<void> {
         const docRef = doc(db, 'users', userUid);
-        await setDoc(docRef, {
-            userUid: profile.userUid,
-            fcmToken: profile.fcmToken,
-        });
+        await setDoc(docRef, profile.sanitize());
     }
-}
 
+}

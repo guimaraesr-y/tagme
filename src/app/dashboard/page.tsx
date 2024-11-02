@@ -1,25 +1,32 @@
 'use client';
 
+import { useCache } from '@/hooks/useCache';
+import { ProfileInterface } from '@/modules/profile/interfaces';
 import React from 'react';
 
 const Dashboard = () => {
+  const { getCache } = useCache();
+
+  const profile = getCache('profile') as ProfileInterface;
+  console.log(profile);
+
   return (
     <div className="p-8 bg-gray-100 rounded-md pb-12 border">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">Bem-vindo ao TagMe Dashboard</h1>
       
       {/* Cards de Resumo */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-        <div className="bg-white p-6 rounded-lg shadow-md">
+        <div className="bg-white p-6 rounded-lg shadow-md flex flex-col justify-between">
           <h2 className="text-xl font-semibold text-gray-700">Total de Clientes</h2>
-          <p className="mt-2 text-3xl font-bold text-blue-600">125</p>
+          <p className="mt-2 text-3xl font-bold text-blue-600">{ profile?.clientsCount || 0 }</p>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-md">
+        <div className="bg-white p-6 rounded-lg shadow-md flex flex-col justify-between">
           <h2 className="text-xl font-semibold text-gray-700">Notificações Enviadas</h2>
-          <p className="mt-2 text-3xl font-bold text-green-500">342</p>
+          <p className="mt-2 text-3xl font-bold text-green-500">{ profile?.notificationsCount || 0 }</p>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-md">
+        <div className="bg-white p-6 rounded-lg shadow-md flex flex-col justify-between">
           <h2 className="text-xl font-semibold text-gray-700">QR Codes Gerados</h2>
-          <p className="mt-2 text-3xl font-bold text-purple-500">75</p>
+          <p className="mt-2 text-3xl font-bold text-purple-500">{ profile?.qrcodeScanCount || 0 }</p>
         </div>
       </div>
 
@@ -43,7 +50,7 @@ const Dashboard = () => {
       </div>
 
       {/* Status do Sistema */}
-      <div className="bg-white p-6 rounded-lg shadow-md">
+      <div className="bg-white p-6 rounded-lg shadow-md flex flex-col justify-between">
         <h2 className="text-2xl font-semibold text-gray-800">Status do Sistema</h2>
         <p className="mt-2 text-gray-600">Todos os serviços estão funcionando normalmente.</p>
       </div>
