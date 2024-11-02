@@ -19,7 +19,7 @@ export default function ProfilePage() {
 
   // load userBusiness
   useEffect(() => {
-    if(loading) {
+    if (loading) {
       let business = getCache("business")
       setUserBusiness(business as any);
     }
@@ -37,13 +37,13 @@ export default function ProfilePage() {
     if (user && userBusiness) {
       setBusiness(userBusiness)
         .then(() => {
-          toast('Business profile updated!', {
+          toast.success('Business profile updated!', {
             position: "bottom-right",
             autoClose: 3000,
             closeOnClick: true,
             pauseOnHover: true,
-          })
-        })
+          });
+        });
     }
   };
 
@@ -61,42 +61,49 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="max-w-md mx-auto">
-      <h1 className="text-3xl font-bold mb-4">Business Profile</h1>
-      <form onSubmit={handleSubmit}>
-        <label className="block mb-2" htmlFor="businessName">
-          Business Name
-        </label>
-        <input
-          type="text"
-          id="businessName"
-          name="businessName"
-          className="w-full px-4 py-2 border rounded-md"
-          value={userBusiness?.businessName ?? ""}
-          onChange={handleChange}
-        />
-        
-        <label className="block mb-2" htmlFor="businessDescription">
-          Business Description
-        </label>
-        <textarea
-          id="businessDescription"
-          name="businessDescription"
-          className="w-full px-4 py-2 border rounded-md"
-          value={userBusiness?.businessDescription ?? ""}
-          onChange={handleChange}
-        />
-        
-        <div>
+    <div className="flex items-start justify-center min-h-screen bg-gray-100">
+      <div className="mt-12 bg-white shadow-lg rounded-lg p-8 max-w-lg w-full">
+        <h1 className="text-4xl font-semibold text-blue-600 mb-6">Business Profile</h1>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="businessName">
+              Business Name <FaInfoCircle className="inline text-gray-400 ml-1 cursor-pointer" title="The name of your business." />
+            </label>
+            <input
+              type="text"
+              id="businessName"
+              name="businessName"
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              value={userBusiness?.businessName ?? ""}
+              onChange={handleChange}
+              placeholder="Enter your business name"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="businessDescription">
+              Business Description <FaInfoCircle className="inline text-gray-400 ml-1 cursor-pointer" title="A short description of your business." />
+            </label>
+            <textarea
+              id="businessDescription"
+              name="businessDescription"
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              value={userBusiness?.businessDescription ?? ""}
+              onChange={handleChange}
+              placeholder="Enter a brief description of your business"
+              rows={4}
+            />
+          </div>
+
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mt-4"
+            className="w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold py-3 rounded-md shadow hover:shadow-lg transform hover:scale-105 transition-all duration-150 ease-out"
           >
-            Save
+            Save Changes
           </button>
-          <ToastContainer />
-        </div>
-      </form>
+        </form>
+        <ToastContainer />
+      </div>
     </div>
   );
 }
